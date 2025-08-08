@@ -1,6 +1,6 @@
-# Ohio ILS Code Demo
+# Ohio LIS Code Demo
 
-A simple demo for the Ohio ILS software engineering position.
+A simple demo for the Ohio LIS software engineering position.
 
 ## Installation
 
