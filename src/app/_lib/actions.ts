@@ -35,8 +35,13 @@ export async function createResident(
     return { errors };
   }
 
+  let resident;
+
   try {
-    await db.insert(residents).values(validatedFields.data);
+    [resident] = await db
+      .insert(residents)
+      .values(validatedFields.data)
+      .returning({ id: residents.id });
   } catch (error) {
     console.error(error);
 
@@ -44,5 +49,5 @@ export async function createResident(
   }
 
   revalidatePath('/residents');
-  redirect('/residents');
+  redirect(`/residents/${resident.id}`);
 }

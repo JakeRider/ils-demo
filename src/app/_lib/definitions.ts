@@ -26,3 +26,5 @@ export const ResidentSchema = z.object({
     z.string().min(2, { error: 'Please enter a valid city name.' })
   ),
 });
+
+export type Resident = z.infer<typeof ResidentSchema> & { id: number };

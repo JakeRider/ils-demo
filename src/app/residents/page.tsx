@@ -1,33 +1,16 @@
-import { residents as residentsTable } from '@/db/schema';
+import { residents } from '@/db/schema';
 import { drizzle } from 'drizzle-orm/libsql';
+import ResidentsTable from '@/app/residents/_components/ResidentsTable';
 
 const db = drizzle(process.env.DB_FILE_NAME!);
 
 export default async function ResidentsPage() {
-  const residents = await db.select().from(residentsTable);
+  const allResidents = await db.select().from(residents);
 
   return (
     <main className="container">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Age</th>
-            <th scope="col">Title</th>
-            <th scope="col">Hometown</th>
-          </tr>
-        </thead>
-        <tbody>
-          {residents.map((resident) => (
-            <tr key={resident.id}>
-              <th scope="row">{resident.name}</th>
-              <td>{resident.age}</td>
-              <td>{resident.title}</td>
-              <td>{resident.hometown}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h1>All Residents</h1>
+      <ResidentsTable residents={allResidents} />
     </main>
   );
 }

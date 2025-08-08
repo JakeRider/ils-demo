@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & h1 {
+    margin: 0;
+  }
+
+  & a {
+    position: absolute;
+    left: 16px;
+  }
+}
